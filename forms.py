@@ -16,13 +16,13 @@ class CreatePostForm(FlaskForm):
 class RegisterForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
     email = EmailField("Email", validators=[DataRequired()])
-    password = PasswordField("Password", validators=[DataRequired(), Length(min=8)])
+    password = PasswordField("Password", validators=[DataRequired(), Length(min=6)])
     submit = SubmitField("Submit")
 
 
 class LoginForm(FlaskForm):
     email = EmailField("Email", validators=[DataRequired()])
-    password = PasswordField("Password", validators=[DataRequired(), Length(min=8)])
+    password = PasswordField("Password", validators=[DataRequired(), Length(min=6)])
     submit = SubmitField("Login")
 
 
