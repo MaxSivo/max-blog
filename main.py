@@ -9,8 +9,6 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
-import click
-from flask.cli import with_appcontext
 import os
 
 app = Flask(__name__)
@@ -67,15 +65,6 @@ class Comments(db.Model):
     comment_author = relationship("User", back_populates="comments")
     post_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
     parent_post = relationship("BlogPost", back_populates="comments")
-
-
-@click.command(name="create_tables")
-@with_appcontext
-def create_tables():
-    db.create_all()
-
-
-app.cli.add_command(create_tables)
 
 
 def admin_only(f):
